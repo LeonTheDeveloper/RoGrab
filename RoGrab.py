@@ -3,9 +3,6 @@ import os
 
 username = os.getenv('username')
 print("""
-Please make sure you have edited the script to set your "Logs" directory!
-it is required for it to work!
-
 How to use:
 Join a Roblox game and wait until the game fully loads
 Run this script while in the game
@@ -23,5 +20,9 @@ for line in roblox_log:
     if 'Connection accepted from' in line:
         line = line.replace('Connection accepted from', '')
         line2 = line.replace('|', ':')
-        line3 = line2[23:]
-        print("Server IP:" + line3)
+        line3 = line2[25:]
+        print("Server IP: " + line3)
+
+        ip_history = open('server_ips.txt', 'a+')
+        ip_history.write(line3 + "\n")
+        ip_history.close()
